@@ -1,0 +1,265 @@
+:root {
+  --heading-color: hsl(0, 0%, 0%);
+  --par-color: hsl(0, 0%, 63%);
+  --hover-color: hsl(0, 0%, 27%);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "League Spartan", sans-serif;
+}
+
+p {
+  color: var(--par-color);
+  line-height: 1.5;
+}
+
+.layout {
+  min-height: 100vh;
+  overflow: hidden;
+  display: grid;
+  grid-template-areas:
+    "home home home home home home home home shop shop shop shop"
+    "home home home home home home home home shop shop shop shop"
+    "home home home home home home home home shop shop shop shop"
+    "image-1 image-1 image-1 image-1 about about about about about image-2 image-2 image-2"
+    "image-1 image-1 image-1 image-1 about about about about about image-2 image-2 image-2"
+    "image-1 image-1 image-1 image-1 about about about about about image-2 image-2 image-2";
+}
+.layout div > img {
+  width: 100%;
+  height: 100%;
+}
+
+.layout .home {
+  grid-area: home;
+  position: relative;
+}
+.layout .home .nav {
+  position: absolute;
+  top: 60px;
+  left: 50px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+@media (max-width: 1199px) {
+  .layout .home .nav {
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .layout .home .nav img {
+    width: 100px;
+    height: 20px;
+  }
+}
+.layout .home .nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+@media (max-width: 1199px) {
+  .layout .home .nav ul {
+    position: absolute;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    left: -100%;
+    top: 0;
+    transition: 0.3s;
+    padding-left: 20px;
+    gap: 40px;
+  }
+  .layout .home .nav ul.open-menu {
+    left: 0;
+  }
+}
+.layout .home .nav ul a {
+  text-decoration: none;
+  color: white;
+  position: relative;
+}
+
+.layout .home .nav ul a::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: white;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: 0.3s;
+}
+@media (max-width: 1199px) {
+  .layout .home .nav ul a {
+    color: var(--heading-color);
+    font-weight: 700;
+  }
+  .layout .home .nav ul a::before {
+    background-color: black;
+  }
+}
+.layout .home .nav ul a:hover::before {
+  width: 80%;
+}
+@media (min-width: 1199px) {
+  .layout .home .nav ul #closeButton, 
+  .layout .home #openButton {
+    display: none;
+    cursor: pointer;
+  }
+}
+.layout .home #openButton {
+  background: none;
+  border: none;
+  position: absolute;
+  left: 20px;
+}
+.layout .home #openButton img, 
+.layout .home .nav ul #closeButton img {
+  width: 20px;
+  height: 20px;
+}
+.layout .shop {
+  position: relative;
+}
+.layout .shop,
+.layout .about {
+  grid-area: shop;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.layout .shop .text {
+  width: 70%;
+}
+.layout .shop span {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  text-transform: uppercase;
+  letter-spacing: 10px;
+  margin-top: 20px;
+  font-weight: 700;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.layout .shop span:hover {
+  color: var(--hover-color);
+}
+.layout .shop span > img {
+  width: 50px;
+}
+.layout .shop .slider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: var(--heading-color);
+  display: flex;
+  align-items: center;
+  width: 27%;
+}
+.layout .shop .slider button {
+  border: none;
+  background: none;
+  width: 50%;
+  height: 70px;
+  cursor: pointer;
+}
+.layout .shop .slider button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.layout .shop .slider img {
+  height: 30px;
+  width: 20px;
+}
+
+.layout .shop .text h1 {
+  font-size: 50px;
+  color: var(--heading-color);
+  margin-bottom: 20px;
+  letter-spacing: -2px;
+}
+.layout .about {
+  grid-area: about;
+}
+.layout .image-1 {
+  grid-area: image-1;
+}
+.layout .about .text {
+  width: 80%;
+}
+.layout .about .text h3 {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.layout .image-2 {
+  grid-area: image-2;
+}
+
+@media (max-width: 1199px) {
+  .layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .layout .home img {
+    height: 350px;
+  }
+  .layout > div:not(:last-child) {
+    padding: 0px 0 40px;
+  }
+  .layout .about .text,
+  .layout .shop .text {
+    width: 80%;
+  }
+
+  .layout .shop .text h1 {
+    font-size: 40px;
+  }
+
+  .layout .shop .slider {
+    top: 0;
+    right: 0;
+    left: auto;
+    bottom: auto;
+    transform: translateY(calc(-100% - 45px));
+  }
+  .layout .shop .slider button {
+    height: 50px;
+  }
+  .layout .shop .slider button img {
+    height: 20px;
+    width: 10px;
+  }
+}
+
+.attribution {
+  background-color: #eee;
+  text-align: center;
+  padding: 20px;
+  line-height: 1.5;
+}
+.attribution a {
+  font-weight: 700;
+  color: var(--hover-color);
+}
